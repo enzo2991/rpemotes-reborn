@@ -127,12 +127,40 @@ end
 -----------------------------------------------------------------------------------------------------
 -- Commands / Events --------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------
+---
+CreateThread(function()
+    TriggerEvent('chat:addSuggestion', '/e', Translate('play_emote'),
+        { { name = "emotename",      help = Translate('help_command') },
+            { name = "texturevariation", help = Translate('help_variation') } })
+    TriggerEvent('chat:addSuggestion', '/emote', Translate('play_emote'),
+        { { name = "emotename",      help = Translate('help_command') },
+            { name = "texturevariation", help = Translate('help_variation') } })
+    if Config.SqlKeybinding then
+        TriggerEvent('chat:addSuggestion', '/emotebind', Translate('link_emote_keybind'),
+            { { name = "key",     help = "num4, num5, num6, num7. num8, num9. Numpad 4-9!" },
+                { name = "emotename", help = Translate('help_command') } })
+        TriggerEvent('chat:addSuggestion', '/emotebinds', Translate('show_emote_keybind'))
+        TriggerEvent('chat:addSuggestion', '/emotedelete', Translate('remove_emote_keybind'),
+            { { name = "key", help = "num4, num5, num6, num7. num8, num9. Numpad 4-9!" } })
+    end
+    TriggerEvent('chat:addSuggestion', '/emotemenu', Translate('open_menu_emote'))
+    TriggerEvent('chat:addSuggestion', '/emotes', Translate('show_list_emote'))
+    TriggerEvent('chat:addSuggestion', '/emotecancel', Translate('cancel_emote'))
+end)
 
+RegisterCommand('e', function(source, args, raw) if CanUseKey and CanUseKey() then EmoteCommandStart(source, args, raw) end end, false)
+RegisterCommand('emote', function(source, args, raw) if CanUseKey and CanUseKey() then EmoteCommandStart(source, args, raw) end end, false)
+
+if Config.Keybinding then
+    RegisterCommand('emotebind', function(source, args, raw) if CanUseKey and CanUseKey() then EmoteBindStart(source, args, raw) end end, false)
+    RegisterCommand('emotebinds', function(source, args, raw) if CanUseKey and CanUseKey() then EmoteBindsStart() end end, false)
+    RegisterCommand('emotedelete', function(source, args) if CanUseKey and CanUseKey() then DeleteEmote(args) end end, false)
+end
 if Config.MenuKeybindEnabled then
-    RegisterCommand('emoteui', function() OpenEmoteMenu() end, false)
+    RegisterCommand('emoteui', function() if CanUseKey and CanUseKey() then OpenEmoteMenu() end end, false)
     RegisterKeyMapping("emoteui", Translate('register_open_menu'), "keyboard", Config.MenuKeybind)
 else
-    RegisterCommand('emotemenu', function() OpenEmoteMenu() end, false)
+    RegisterCommand('emotemenu', function() if CanUseKey and CanUseKey() then OpenEmoteMenu() end end, false)
 end
 RegisterCommand('emotes', function() EmotesOnCommand() end, false)
 RegisterCommand('emotecancel', function() EmoteCancel() end, false)
