@@ -12,27 +12,27 @@ local Ox = require "@ox_core.lib.init"
 RegisterCommand('e',function(source, args, rawCommand)
     local player = Ox.GetPlayer(source)
     player.emit('animations:client:PlayEmote', args)
-end,false)
+end, false)
 
 RegisterCommand('emote',function(source, args, rawCommand)
     local player = Ox.GetPlayer(source)
     player.emit('animations:client:PlayEmote', args)
-end,false)
+end, false)
 
 if Config.Keybinding then
     RegisterCommand('emotebind',function(source, args, rawCommand)
         local player = Ox.GetPlayer(source)
         player.emit('animations:client:BindEmote', args)
-    end,false)
+    end, false)
 
     RegisterCommand('emotebinds',function(source, args, rawCommand)
         local player = Ox.GetPlayer(source)
         player.emit('animations:client:EmoteBinds')
-    end,false)
+    end, false)
 
     RegisterCommand('emotedelete',function(source, args, rawCommand)
         local player = Ox.GetPlayer(source)
         player.emit('animations:client:EmoteDelete', args)
-    end,false)
+    end, false)
 end
 
