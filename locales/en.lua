@@ -77,6 +77,7 @@ Locales['en'] = {
     ['btn_increment'] = "Increment",
     ['dead'] = "You can't use emotes while dead!",
     ['swimming'] = "You can't use emotes while swimming",
+    ['arresting'] = "You can't use emotes while arresting",
     ['notvalidpet'] = "RUH ROH! Incorrect ped model detected 🐕!",
     ['animaldisabled'] = "Sorry! Animal emotes are disabled on this server",
     ['adultemotedisabled'] = "Bonk! Adult emotes disabled 🔞",

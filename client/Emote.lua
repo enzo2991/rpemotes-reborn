@@ -589,6 +589,14 @@ function EmoteCommandStart(source, args, raw)
             })
             return
         end
+        if IsPedCuffed(PlayerPedId()) or IsEntityPlayingAnim(PlayerPedId(), 'mp_arresting', 'idle', 3) then
+            TriggerEvent('chat:addMessage', {
+                color = { 255, 0, 0 },
+                multiline = true,
+                args = { "RPEmotes", Translate('arresting') }
+            })
+            return
+        end
         local name = string.lower(args[1])
         if name == "c" then
             if IsInAnimation then
